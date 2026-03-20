@@ -22,6 +22,23 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is a text node", TextType.BOLD)
         self.assertNotEqual(node.text_type, node2.text_type)
 
+    def test_text(self):
+        node = TextNode("This is a text node", TextType.TEXT)
+        html_node = node.text_node_to_html_node(node)
+        self.assertEqual(html_node.tag.value, None)
+        self.assertEqual(html_node.value, "This is a text node")
+
+    def test_bold_text(self):
+        node = TextNode("This is a text node", TextType.BOLD)
+        html_node = node.text_node_to_html_node(node)
+        self.assertEqual(html_node.tag.value, "b")
+        self.assertEqual(html_node.value, "This is a text node")
+
+    def test_code_text(self):
+        node = TextNode("This is a text node", TextType.CODE)
+        html_node = node.text_node_to_html_node(node)
+        self.assertEqual(html_node.tag.value, "code")
+        self.assertEqual(html_node.value, "This is a text node")
 
 if __name__ == "__main__":
     unittest.main()

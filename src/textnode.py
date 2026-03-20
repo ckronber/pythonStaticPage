@@ -1,4 +1,5 @@
 from enum import Enum
+from htmlnode import LeafNode
 
 class Bender(Enum):
     AIR_BENDER = "air"
@@ -7,9 +8,12 @@ class Bender(Enum):
     FIRE_BENDER = "fire"
 
 class TextType(Enum):
-    NORMAL = "normal"
-    BOLD = "bold"
-    ITALIC = "italic"
+    BOLD = "b"
+    ITALIC = "i"
+    TEXT = None
+    CODE = "code"
+    LINK = "a href"
+    IMAGE = "img"
 
 class TextNode():
     def __init__(self,text,text_type,url=None):
@@ -22,3 +26,9 @@ class TextNode():
 
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
+
+    def text_node_to_html_node(self,TextNode):
+        if TextNode is None:
+            raise Exception
+        else:
+            return LeafNode(TextNode.text_type,TextNode.text,TextNode.url)

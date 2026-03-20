@@ -17,6 +17,7 @@ class HTMLNode():
             props_str+= f" {key}=\"{val}\""
         return props_str.strip()
 
+
 class LeafNode(HTMLNode):
     def __init__(self,tag:str,value:str,props:dict=None):
         super().__init__(tag=tag,value=value,props=props)
